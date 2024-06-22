@@ -130,7 +130,10 @@ where
             Some(BundleResultType::Accepted(Accepted {
                 slot: _s,
                 validator_identity: _v,
-            })) => {}
+            })) => {
+                info!("accepted into slot {} by {}", _s, _v);
+                return Ok(());
+            }
             Some(BundleResultType::Rejected(rejected)) => {
                 match rejected.reason {
                     Some(Reason::WinningBatchBidRejected(WinningBatchBidRejected {
